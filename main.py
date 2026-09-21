@@ -1,4 +1,19 @@
 import os
+from aiohttp import web
+
+# Render portini ushlab turish uchun kichik server
+async def handle(request):
+    return web.Response(text="Bot ishlamoqda!")
+
+async def start_background_web_server():
+    app = web.Application()
+    app.router.add_get('/', handle)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    port = int(os.environ.get("PORT", 8080))
+    site = web.TCPSite(runner, '0.0.0.0', port)
+    await site.start()
+import os
 from supabase import create_client, Client
 
 # Supabase ulanish ma'lumotlari
@@ -245,6 +260,8 @@ async def back_to_list(call: CallbackQuery):
 
 async def main():
     bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+    await bot.delete_webhook(drop_pending_updates=True)
+    await start_background_web_server()
     print("Bot ishga tushdi!")
     await dp.start_polling(bot)
 
