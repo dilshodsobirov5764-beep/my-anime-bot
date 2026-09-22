@@ -261,7 +261,7 @@ async def back_to_list(call: CallbackQuery):
 async def main():
     bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     await bot.delete_webhook(drop_pending_updates=True)
-    await start_background_web_server()
+    asyncio.create_task(start_background_web_server())
     print("Bot ishga tushdi!")
     await dp.start_polling(bot)
 
