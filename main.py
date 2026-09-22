@@ -33,7 +33,7 @@ from aiogram.types import (
     CallbackQuery, ReplyKeyboardMarkup, KeyboardButton
 )
 
-TOKEN = "8986765239:AAFwBeAhl9Byxr8_cRiTL9T2vdWVVJEaHFk"
+TOKEN = "8986765239:AAHOLuCI0HMxxNePO1t1402RI2hWniwgaAo"
 ADMIN_ID = 6625248174  # O'zingizning ID raqamingiz
 
 # Baza yaratish
